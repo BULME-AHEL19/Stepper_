@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "stepper.h"
 
-Stepper_::Stepper_(int dir, int step_, int en, int but_bot, int but_bot): 
+Stepper_::Stepper_(int dir, int step_, int en, int but_bot, int but_top): 
   _dir(dir),
   _step(step_),
   _en(en),
@@ -26,10 +26,10 @@ void Stepper_::begin()
   digitalWrite(_en, LOW);
 }
 
-int Stepper_::getSteps()
+int Stepper_::getSteps(int delayTime)
 {
-  moveToEnd(400);
-  return moveToStart(400);
+  moveToEnd(delayTime);
+  return moveToStart(delayTime);
 }
 
 int Stepper_::moveToStart(int delayTime)
@@ -79,18 +79,18 @@ bool Stepper_::checkIfHit()
 {
 #ifdef STEPPER_H_DEBUG
   Serial.print("button_top: ");
-  Serial.println(digitalRead(BUTTON_TOP));
+  Serial.println(digitalRead(_but_top));
   Serial.print("button_bottom: ");
-  Serial.println(digitalRead(BUTTON_BOTTOM));
-#endif 
+  Serial.println(digitalRead(_but_bot));
+#endif
  
   if(!motorDir)
   {
-    return !digitalRead(BUTTON_BOTTOM);
+    return !digitalRead(_but_bot);
   }
   else
   {
-    return !digitalRead(BUTTON_TOP);
+    return !digitalRead(_but_top);
   }
 }
 
@@ -99,3 +99,23 @@ void Stepper_::changeDir(boolean d)
   motorDir = d;
   digitalWrite(_dir, motorDir);
 }
+
+int Stepper_::getStepsFromDeg(int deg)
+{
+  return STEPS_PER_DEG * deg;
+}
+
+int Stepper_::moveDeg(int deg)
+{
+  deg -= 90;
+  deg = min(MAX_DEG,deg);
+  deg = max(MIN_DEG,deg);
+  deg -= MIN_DEG;
+  return Step(getStepsFromDeg(deg));
+}
+
+void Stepper_::toggleDir()
+{
+  changeDir(!motorDir);
+}
+
