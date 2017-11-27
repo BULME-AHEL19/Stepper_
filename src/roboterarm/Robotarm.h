@@ -17,7 +17,8 @@ public:
   boolean hitsTop();
   boolean hitsBot();
 
-  void moveMid(int steps = 1, boolean dir = false);
+  void moveMidStep(int steps = 1, boolean dir = false);
+  void moveMidDeg(int deg, boolean dir = false);
 private:
   MiddleStepper _midStep;
 };

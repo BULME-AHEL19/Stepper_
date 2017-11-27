@@ -28,9 +28,15 @@ boolean Robotarm::hitsBot()
   return digitalRead(BUTTON_BOT) == LOW;
 }
 
-void Robotarm::moveMid(int steps, boolean dir)
+void Robotarm::moveMidStep(int steps, boolean dir)
 {
   _midStep.changeDir(dir);
   _midStep.Step(steps);
+}
+
+void Robotarm::moveMidDeg(int deg, boolean dir)
+{
+  _midStep.changeDir(dir);
+  _midStep.moveDeg(deg);
 }
 
