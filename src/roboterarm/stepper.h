@@ -16,6 +16,9 @@ public:
   boolean getDir() {return motorDir;}
   void toggleDir();
   
+  void enable();
+  void disable();
+  
 protected:  
   boolean motorDir;
 
