@@ -16,7 +16,7 @@ public:
   boolean getDir() {return motorDir;}
   void toggleDir();
   
-private:  
+protected:  
   boolean motorDir;
 
   const int _dir;

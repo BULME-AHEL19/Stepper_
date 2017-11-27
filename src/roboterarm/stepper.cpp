@@ -28,7 +28,7 @@ int Stepper_::Step(int n, int stepDelay)
    Serial.println(n);
     
    int i;
-   for(i = 0; i < n && !checkIfHit(); i++)
+   for(i = 0; i < n; i++)
    {
      moveOneStep(stepDelay);
    }
