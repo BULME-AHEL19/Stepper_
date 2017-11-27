@@ -29,8 +29,6 @@ public:
   int moveDeg(int deg);
   void toggleDir();
   
-  
-  
 private:  
   boolean motorDir;
 
