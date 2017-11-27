@@ -9,10 +9,12 @@ Stepper_::Stepper_(int dir, int step_, int en):
   changeDir(false);
 }
 
+
 Stepper_::~Stepper_()
 {
   
 }
+
 
 void Stepper_::begin()
 {
@@ -21,6 +23,19 @@ void Stepper_::begin()
   pinMode(_en, OUTPUT);
   digitalWrite(_en, LOW);
 }
+
+
+void Stepper_::enable()
+{
+  digitalWrite(_en, LOW);
+}
+
+
+void Stepper_::disable()
+{
+  digitalWrite(_en, HIGH);
+}
+
 
 int Stepper_::Step(int n, int stepDelay)
 {
@@ -35,6 +50,7 @@ int Stepper_::Step(int n, int stepDelay)
    return i;
 }
 
+
 void Stepper_::moveOneStep(int stepDelay)
 {
   digitalWrite(_step, HIGH);
@@ -43,11 +59,13 @@ void Stepper_::moveOneStep(int stepDelay)
   delayMicroseconds(stepDelay);
 }
 
+
 void Stepper_::changeDir(boolean d)
 {
   motorDir = d;
   digitalWrite(_dir, motorDir);
 }
+
 
 void Stepper_::toggleDir()
 {
