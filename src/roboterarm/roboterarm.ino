@@ -10,9 +10,13 @@ void setup()
 
 void loop()
 {
-  arm.moveMidDeg(45,false);
+  arm.moveMidDeg(90,false);
   delay(1000);
-  arm.moveMidDeg(45,true);
+  arm.moveMidDeg(90,true);
+  delay(1000);
+  arm.moveHeadStep(1000,false);
+  delay(1000);
+  arm.moveHeadStep(1000,true);
   delay(1000);
 }
 
