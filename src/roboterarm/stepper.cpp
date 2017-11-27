@@ -102,15 +102,14 @@ void Stepper_::changeDir(boolean d)
 
 int Stepper_::getStepsFromDeg(int deg)
 {
-  return STEPS_PER_DEG * deg;
+  return STEPS_PER_DEG * (float)deg;
 }
 
 int Stepper_::moveDeg(int deg)
 {
-  deg -= 90;
-  deg = min(MAX_DEG,deg);
-  deg = max(MIN_DEG,deg);
-  deg -= MIN_DEG;
+  //deg -= 90;
+  //deg = min(MAX_DEG,deg);
+  //deg = max(MIN_DEG,deg);
   return Step(getStepsFromDeg(deg));
 }
 

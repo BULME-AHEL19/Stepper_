@@ -2,9 +2,9 @@
 #define STEPPER_H
 #include "Arduino.h"
 #define SPEED 300
-#define STEP_COUNT 2090  // 2090 steps
-#define DEG_COUNT 68  // max 68°
-#define STEPS_PER_DEG STEP_COUNT / DEG_COUNT
+#define STEP_COUNT 2090.0f  // 2090 steps
+#define DEG_COUNT 68.0f  // max 68°
+#define STEPS_PER_DEG (STEP_COUNT / DEG_COUNT)
 #define MIN_DEG 30
 #define MAX_DEG 98
 
