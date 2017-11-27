@@ -24,6 +24,8 @@ public:
   void midDisable();
   void headMoveStep(int steps = 1,boolean dir = false);
   void headMoveDeg(int deg, boolean dir = false);
+  void headMoveToTop();
+  void headMoveToMax();
   void headEnable();
   void headDisable();
 
