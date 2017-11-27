@@ -43,11 +43,11 @@ void Robotarm::midMoveDeg(int deg, boolean dir)
 
 void Robotarm::midEnable()
 {
-  
+  _midStep.enable();
 }
 void Robotarm::midDisable()
 {
-  
+  _midStep.disable();
 }
 
 void Robotarm::headMoveStep(int steps,boolean dir)
@@ -64,24 +64,20 @@ void Robotarm::headMoveDeg(int deg, boolean dir = false)
 
 void Robotarm::headEnable()
 {
-  
+  _headStep.enable();
 }
 
 void Robotarm::headDisable()
 {
-  
+  _headStep.disable();
 }
 
-void Robotarm::moveToTop()
+void Robotarm::moveToTop(int delayTime)
 {
   headDisable();
   moveToBot();
-
-  _midStep.changeDir(true);
-  while(!hitsTop())
-  {
-    _midStep.moveOneStep(SPEED);
-  }
+  delay(delayTime);
+  midMoveDeg(104,true);
 }
 void Robotarm::moveToBot()
 {

@@ -27,7 +27,7 @@ public:
   void headEnable();
   void headDisable();
 
-  void moveToTop();
+  void moveToTop(int delayTime = 1000);
   void moveToBot();
   
 private:
