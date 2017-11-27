@@ -29,36 +29,66 @@ boolean Robotarm::hitsBot()
   return digitalRead(BUTTON_BOT) == LOW;
 }
 
-void Robotarm::moveMidStep(int steps, boolean dir)
+void Robotarm::midMoveStep(int steps, boolean dir)
 {
   _midStep.changeDir(dir);
   _midStep.Step(steps);
 }
 
-void Robotarm::moveMidDeg(int deg, boolean dir)
+void Robotarm::midMoveDeg(int deg, boolean dir)
 {
   _midStep.changeDir(dir);
   _midStep.moveDeg(deg);
 }
 
-void Robotarm::moveHeadStep(int steps,boolean dir)
+void Robotarm::midEnable()
+{
+  
+}
+void Robotarm::midDisable()
+{
+  
+}
+
+void Robotarm::headMoveStep(int steps,boolean dir)
 {
   _headStep.changeDir(dir);
   _headStep.Step(steps);
 }
 
-void Robotarm::moveHeadDeg(int deg, boolean dir = false)
+void Robotarm::headMoveDeg(int deg, boolean dir = false)
 {
   _headStep.changeDir(dir);
   _headStep.moveDeg(deg);
 }
 
-void Robotarm::moveToTop()
+void Robotarm::headEnable()
 {
   
 }
-void Robotarm::moveToBot()
+
+void Robotarm::headDisable()
 {
   
+}
+
+void Robotarm::moveToTop()
+{
+  headDisable();
+  moveToBot();
+
+  _midStep.changeDir(true);
+  while(!hitsTop())
+  {
+    _midStep.moveOneStep(SPEED);
+  }
+}
+void Robotarm::moveToBot()
+{
+  _midStep.changeDir(false); 
+  while(!hitsBot())
+  {
+    _midStep.moveOneStep(SPEED);
+  }
 }
 

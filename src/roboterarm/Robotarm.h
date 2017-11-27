@@ -18,10 +18,14 @@ public:
   boolean hitsTop();
   boolean hitsBot();
 
-  void moveMidStep(int steps = 1, boolean dir = false);
-  void moveMidDeg(int deg, boolean dir = false);
-  void moveHeadStep(int steps = 1,boolean dir = false);
-  void moveHeadDeg(int deg, boolean dir = false);
+  void midMoveStep(int steps = 1, boolean dir = false);
+  void midMoveDeg(int deg, boolean dir = false);
+  void midEnable();
+  void midDisable();
+  void headMoveStep(int steps = 1,boolean dir = false);
+  void headMoveDeg(int deg, boolean dir = false);
+  void headEnable();
+  void headDisable();
 
   void moveToTop();
   void moveToBot();
