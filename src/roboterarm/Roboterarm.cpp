@@ -62,6 +62,12 @@ void Robotarm::rotorMoveDeg(int deg, boolean dir)
   _rotorStep.moveDeg(deg);
 }
 
+void Robotarm::rotorHalfTurn(boolean dir) 
+{
+  _rotorStep.changeDir(dir);
+  _rotorStep.moveDeg(180);
+}
+
 void Robotarm::rotorEnable()
 {
   _rotorStep.enable();
@@ -128,6 +134,6 @@ void Robotarm::moveToBot()
 
 void Robotarm::update()
 {
-  
+  _conCom.update();
 }
 

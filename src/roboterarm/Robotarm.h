@@ -4,6 +4,7 @@
 #include "middlestepper.h"
 #include "headstepper.h"
 #include "rotationstepper.h"
+#include "consolecommunicator.h"
 
 #define BUTTON_TOP A1
 #define BUTTON_BOT A0
@@ -31,6 +32,7 @@ public:
   void headDisable();
   void rotorMoveStep(int steps = 1, boolean dir = false);
   void rotorMoveDeg(int deg, boolean dir = false);
+  void rotorHalfTurn(boolean dir = false);
   void rotorEnable();
   void rotorDisable();
 
@@ -43,7 +45,7 @@ private:
   MiddleStepper _midStep;
   HeadStepper   _headStep;
   RotationStepper _rotorStep;
-  
+  ConsoleCommunicator _conCom;
 };
 
 #endif

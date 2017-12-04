@@ -67,7 +67,6 @@ void ConsoleCommunicator::update()
     Serial.println(command);
 #endif
 
-
     // filter out x and y
     if (_onMoveToPosRegistered)
     {
