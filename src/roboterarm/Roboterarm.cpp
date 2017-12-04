@@ -134,6 +134,6 @@ void Robotarm::moveToBot()
 
 void Robotarm::update()
 {
-  
+  _conCom.update();
 }
 

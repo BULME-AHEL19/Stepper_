@@ -4,6 +4,7 @@
 #include "middlestepper.h"
 #include "headstepper.h"
 #include "rotationstepper.h"
+#include "consolecommunicator.h"
 
 #define BUTTON_TOP A1
 #define BUTTON_BOT A0
@@ -44,7 +45,7 @@ private:
   MiddleStepper _midStep;
   HeadStepper   _headStep;
   RotationStepper _rotorStep;
-  
+  ConsoleCommunicator _conCom;
 };
 
 #endif
