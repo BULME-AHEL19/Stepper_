@@ -42,7 +42,7 @@ public:
 private:
   MiddleStepper _midStep;
   HeadStepper   _headStep;
-  RotationStepper _rotorStep;,
+  RotationStepper _rotorStep;
   
 };
 
