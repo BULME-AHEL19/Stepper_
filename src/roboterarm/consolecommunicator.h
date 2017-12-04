@@ -8,7 +8,7 @@ class ConsoleCommunicator
   ~ConsoleCommunicator();
   
 public:
-  void run();
+  void update();
   void onCommand(void (*callback)(char * command));
   void onMoveToPos(void (*callback)(int x, int y));
   

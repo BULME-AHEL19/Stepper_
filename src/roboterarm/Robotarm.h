@@ -3,6 +3,7 @@
 
 #include "middlestepper.h"
 #include "headstepper.h"
+#include "consolecommunicator.h"
 
 #define BUTTON_TOP A1
 #define BUTTON_BOT A0
@@ -37,6 +38,7 @@ public:
 private:
   MiddleStepper _midStep;
   HeadStepper   _headStep;
+  ConsoleCommunicator _conCom;
 };
 
 #endif

@@ -9,19 +9,13 @@ ConsoleCommunicator::~ConsoleCommunicator()
 {
 }
 
-void ConsoleCommunicator::run()
+void ConsoleCommunicator::update()
 {
-  while(!Serial)  // wait until Serial Port connected
+  if(Serial)  // wait until Serial Port connected
   {
-  }
-  
-  while(true)    // run forever
-  {
-    while(!Serial.available())  // wait until something to read is here
-    {
-    }
-    
-    
+     if(Serial.available())  // wait until something to read is here
+     {
+     }
   }
 }
 
