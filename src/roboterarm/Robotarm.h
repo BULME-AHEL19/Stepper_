@@ -31,6 +31,8 @@ public:
 
   void moveToTop(int delayTime = 1000);
   void moveToBot();
+
+  void update();
   
 private:
   MiddleStepper _midStep;

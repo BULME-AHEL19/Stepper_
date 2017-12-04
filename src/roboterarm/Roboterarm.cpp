@@ -104,3 +104,8 @@ void Robotarm::moveToBot()
   }
 }
 
+void Robotarm::update()
+{
+  
+}
+

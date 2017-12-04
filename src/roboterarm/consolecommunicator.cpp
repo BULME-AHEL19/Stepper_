@@ -1,4 +1,5 @@
 #include "consolecommunicator.h"
+#include "Arduino.h"
 
 ConsoleCommunicator::ConsoleCommunicator()
 {
@@ -8,7 +9,7 @@ ConsoleCommunicator::~ConsoleCommunicator()
 {
 }
 
-ConsoleCommunicator::run()
+void ConsoleCommunicator::run()
 {
   while(!Serial)  // wait until Serial Port connected
   {
@@ -24,12 +25,12 @@ ConsoleCommunicator::run()
   }
 }
 
-ConsoleCommunicator::onCommand(&void callback(char * command))
+void ConsoleCommunicator::onCommand(void (*callback)(char* command))
 {
   _onCommandCallback = callback;
 }
 
-ConsoleCommunicator::onMoveToPos(&void callback(int x, int, y))
+void ConsoleCommunicator::onMoveToPos(void (*callback)(int x, int y))
 {
   _onMoveToPosCallback = callback;
 }
