@@ -80,8 +80,14 @@ void Robotarm::rotorDisable()
 
 void Robotarm::headMoveStep(int steps,boolean dir)
 {
-  _headStep.changeDir(dir);
-  _headStep.Step(steps);
+  if(steps == 0)
+    headMoveToTop();
+  else
+  {
+    _headStep.changeDir(dir);
+    _headStep.Step(steps);
+  }
+  
 }
 
 void Robotarm::headMoveDeg(int deg, boolean dir)

@@ -84,18 +84,15 @@ void ConsoleCommunicator::update()
         _onMoveToPosCallback(x, y);
       }
     }
-    else
+    // exec callback
+    if (_onCommandRegistered) // if registered
     {
-      // exec callback
-      if (_onCommandRegistered) // if registered
-      {
-        _onCommandCallback(command);
-      }
+      _onCommandCallback(words,count);
     }
   }
 }
 
-void ConsoleCommunicator::onCommand(void (*callback)(char* command))
+void ConsoleCommunicator::onCommand(void (*callback)(char command[][C_C_STR_SPLIT_LENGTH],int len))
 {
   _onCommandCallback = callback;
   _onCommandRegistered = true;
