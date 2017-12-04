@@ -40,6 +40,8 @@ public:
   void moveToBot();
 
   void update();
+
+  ConsoleCommunicator* getConCom() {return &_conCom;}
   
 private:
   MiddleStepper _midStep;

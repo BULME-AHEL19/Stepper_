@@ -61,18 +61,18 @@ void ConsoleCommunicator::update()
     int len = Serial.readBytesUntil('\0', command, C_C_COMMAND_LENGTH);
     command[len] = '\0';  // add \0 at the end
     len ++;
-
 #ifdef C_C_DEBUG
     Serial.print("Received: ");
     Serial.println(command);
 #endif
 
+    char words[C_C_STR_SPLIT_NUMBER][C_C_STR_SPLIT_LENGTH];
+    int count = _strSplit(command, len, words);
+    
     // filter out x and y
     if (_onMoveToPosRegistered)
-    {
-      char words[C_C_STR_SPLIT_NUMBER][C_C_STR_SPLIT_LENGTH];
-      int count = _strSplit(command, len, words);
-      if (strcmp(words[0], "move") == 0 && count > 2)
+    {  
+      if (count > 2 && strcmp(words[0], "move") == 0)
       {
         int x = atoi(words[1]);
         int y = atoi(words[2]);
