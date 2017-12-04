@@ -1,7 +1,7 @@
 #include "Robotarm.h"
 
 Robotarm arm;
-boolean dir = false;
+boolean dir = true;
 
 void setup()
 { 
@@ -11,15 +11,8 @@ void setup()
 
 void loop()
 {
-  arm.update();
-  arm.headMoveDeg(45,dir);
-  delay(1000);
-  arm.headMoveDeg(45,dir);
+  arm.rotorHalfTurn(dir);
   delay(1000);
   dir = !dir;
-  
-  arm.rotorMoveDeg(45,dir);
-  delay(1000);
-  arm.rotorMoveDeg(90,!dir);
 }
 
