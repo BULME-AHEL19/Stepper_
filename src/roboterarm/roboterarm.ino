@@ -18,7 +18,7 @@ void loop()
   delay(1000);
   dir = !dir;
   
-  arm.rotorMoveDeg(90,dir);
+  arm.rotorMoveDeg(45,dir);
   delay(1000);
   arm.rotorMoveDeg(90,!dir);
 }

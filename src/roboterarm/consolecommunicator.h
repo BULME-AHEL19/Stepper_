@@ -4,10 +4,9 @@
 
 class ConsoleCommunicator
 {
+public:
   ConsoleCommunicator();
   ~ConsoleCommunicator();
-  
-public:
   void update();
   void onCommand(void (*callback)(char * command));
   void onMoveToPos(void (*callback)(int x, int y));
