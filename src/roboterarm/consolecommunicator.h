@@ -9,9 +9,9 @@ class ConsoleCommunicator
   ~ConsoleCommunicator();
   
 public:
-  void run();
-  void onCommand(&void callback(char * command));
-  void onMoveToPos(&void callback(int x, int y));
+  void update();
+  void onCommand(void (*callback)(char * command));
+  void onMoveToPos(void (*callback)(int x, int y));
   
 private:
   void (*_onCommandCallback)(char * command);

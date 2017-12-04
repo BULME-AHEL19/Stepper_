@@ -3,6 +3,7 @@
 
 #include "middlestepper.h"
 #include "headstepper.h"
+#include "rotationstepper.h"
 
 #define BUTTON_TOP A1
 #define BUTTON_BOT A0
@@ -24,15 +25,25 @@ public:
   void midDisable();
   void headMoveStep(int steps = 1,boolean dir = false);
   void headMoveDeg(int deg, boolean dir = false);
+  void headMoveToTop();
+  void headMoveToMax();
   void headEnable();
   void headDisable();
+  void rotorMoveStep(int steps = 1, boolean dir = false);
+  void rotorMoveDeg(int deg, boolean dir = false);
+  void rotorEnable();
+  void rotorDisable();
 
   void moveToTop(int delayTime = 1000);
   void moveToBot();
+
+  void update();
   
 private:
   MiddleStepper _midStep;
   HeadStepper   _headStep;
+  RotationStepper _rotorStep;
+  
 };
 
 #endif

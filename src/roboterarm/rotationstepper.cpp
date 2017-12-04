@@ -1,6 +1,6 @@
 #include "rotationstepper.h"
 
-RotationStepper::RotationStepper() : Stepper_(5,6,7)
+RotationStepper::RotationStepper() : Stepper_(8,9,10)
 { 
   changeDir(false);
 }
