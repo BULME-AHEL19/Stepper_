@@ -31,6 +31,7 @@ public:
   void headDisable();
   void rotorMoveStep(int steps = 1, boolean dir = false);
   void rotorMoveDeg(int deg, boolean dir = false);
+  void rotorHalfTurn(boolean dir = false);
   void rotorEnable();
   void rotorDisable();
 
