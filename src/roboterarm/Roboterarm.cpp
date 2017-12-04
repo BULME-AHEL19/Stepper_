@@ -78,7 +78,7 @@ void Robotarm::headMoveStep(int steps,boolean dir)
   _headStep.Step(steps);
 }
 
-void Robotarm::headMoveDeg(int deg, boolean dir = false)
+void Robotarm::headMoveDeg(int deg, boolean dir)
 {
   _headStep.changeDir(dir);
   _headStep.moveDeg(deg);

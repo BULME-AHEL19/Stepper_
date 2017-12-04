@@ -18,8 +18,6 @@ public:
 
   int getStepsFromDeg(int deg);
 protected:
-  const int _buttonTop;
-  const int _buttonBot;
 };
 
 #endif
