@@ -21,7 +21,7 @@ void ConsoleCommunicator::update()
 #endif
 
     // compare if "move" is in it
-    if (strcmp(command, "move") == 0);
+    if (strcmp(command, "move") == 0)
     {
       // filter out x and y
 
