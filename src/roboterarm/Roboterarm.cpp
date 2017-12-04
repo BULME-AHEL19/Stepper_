@@ -50,6 +50,28 @@ void Robotarm::midDisable()
   _midStep.disable();
 }
 
+void Robotarm::rotorMoveStep(int steps, boolean dir) 
+{
+  _rotorStep.changeDir(dir);
+  _rotorStep.Step(steps);
+}
+
+void Robotarm::rotorMoveDeg(int deg, boolean dir)
+{
+  _rotorStep.changeDir(dir);
+  _rotorStep.moveDeg(deg);
+}
+
+void Robotarm::rotorEnable()
+{
+  _rotorStep.enable();
+}
+
+void Robotarm::rotorDisable()
+{
+  _rotorStep.disable();
+}
+
 void Robotarm::headMoveStep(int steps,boolean dir)
 {
   _headStep.changeDir(dir);
