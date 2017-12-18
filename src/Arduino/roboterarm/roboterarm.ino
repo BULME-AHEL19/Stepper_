@@ -16,6 +16,8 @@ void setup()
   arm.getConCom()->onRotateToPos(&onRotateCommand);
   
   arm.begin();
+
+  arm.moveToTop();
 }
 
 void loop()
