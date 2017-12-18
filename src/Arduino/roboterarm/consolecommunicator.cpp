@@ -12,33 +12,52 @@ ConsoleCommunicator::~ConsoleCommunicator()
 
 void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int len)
 {
-   
-      if (len > 2)
-      {
+    if (len > 2)
+    {
         if(_onMoveToPosRegistered && strcmp(command[0], "move") == 0)
         {
           _onMoveToPos(command,len);
         }
+    }
+    else if(len < 2)
+    {
+      if(_onMoveToTopRegistered && strcmp(command[0],"moveToTop") == 0)
+      {
+        _onMoveToTop(command,len);
+      }
+      else if(_onMoveToBotRegistered && strcmp(command[0],"moveToBot") == 0)
+      {
+        _onMoveToBot(command,len);
       }
     }
     // exec callback
     if (_onCommandRegistered) // if registered
     {
-      _onCommandCallback(words,count);
+      _onCommandCallback(command,len);
     }
 }
 
 void ConsoleCommunicator::_onMoveToPos(char command[][C_C_STR_SPLIT_LENGTH],int len)
 {
   // filter out x and y
-   int x = atoi(words[1]);
-        int y = atoi(words[2]);
+   int x = atoi(command[1]);
+   int y = atoi(command[2]);
 
 #ifdef C_C_DEBUG
-        Serial.println(x);
-        Serial.println(y);
+    Serial.println(x);
+    Serial.println(y);
 #endif
-        _onMoveToPosCallback(x, y);
+    _onMoveToPosCallback(x, y);
+}
+
+void ConsoleCommunicator::_onMoveToTop(char command[][C_C_STR_SPLIT_LENGTH],int len)
+{
+  _onMoveToTopCallback();
+}
+
+void ConsoleCommunicator::_onMoveToBot(char command[][C_C_STR_SPLIT_LENGTH],int len)
+{
+  _onMoveToBotCallback();
 }
 
 int ConsoleCommunicator::_strSplit(char * str, int len, char result[][C_C_STR_SPLIT_LENGTH])
@@ -91,7 +110,8 @@ void ConsoleCommunicator::update()
     char command [C_C_COMMAND_LENGTH];
     int len = Serial.readBytesUntil('\0', command, C_C_COMMAND_LENGTH);
     command[len] = '\0';  // add \0 at the end
-    len ++;
+    len++;
+    
 #ifdef C_C_DEBUG
     Serial.print("Received: ");
     Serial.println(command);
@@ -99,11 +119,22 @@ void ConsoleCommunicator::update()
 
     char words[C_C_STR_SPLIT_NUMBER][C_C_STR_SPLIT_LENGTH];
     int count = _strSplit(command, len, words);
-
-    _onCommand(words,count);
     
-   
+    _onCommand(words,count);
   }
+}
+
+
+void ConsoleCommunicator::onMoveToTop(void (*callback)())
+{
+  _onMoveToTopCallback = callback;
+  _onMoveToTopRegistered = true;
+}
+
+void ConsoleCommunicator::onMoveToBot(void (*callback)())
+{
+  _onMoveToBotCallback = callback;
+  _onMoveToBotRegistered = true;
 }
 
 void ConsoleCommunicator::onCommand(void (*callback)(char command[][C_C_STR_SPLIT_LENGTH],int len))

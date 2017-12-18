@@ -15,18 +15,26 @@ public:
   void update();
   void onCommand(void (*callback)(char command[][C_C_STR_SPLIT_LENGTH], int len));
   void onMoveToPos(void (*callback)(int x, int y));
+  void onMoveToTop(void (*callback)());
+  void onMoveToBot(void (*callback)());
   
 private:
   void _onCommand(char command[][C_C_STR_SPLIT_LENGTH],int len);
   void _onMoveToPos(char command[][C_C_STR_SPLIT_LENGTH],int len);
+  void _onMoveToTop(char command[][C_C_STR_SPLIT_LENGTH],int len);
+  void _onMoveToBot(char command[][C_C_STR_SPLIT_LENGTH],int len);
 
   int _strSplit(char * str, int len, char result[][C_C_STR_SPLIT_LENGTH]);
   
   void (*_onCommandCallback)(char command[][C_C_STR_SPLIT_LENGTH], int len);
   void (*_onMoveToPosCallback)(int x, int y);
+  void (*_onMoveToTopCallback)();
+  void (*_onMoveToBotCallback)();
   
   bool _onCommandRegistered = false;
   bool _onMoveToPosRegistered = false;
+  bool _onMoveToTopRegistered = false;
+  bool _onMoveToBotRegistered = false;
 };
 
 #endif
