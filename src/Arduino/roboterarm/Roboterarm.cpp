@@ -131,6 +131,7 @@ void Robotarm::moveToTop(int delayTime)
 }
 void Robotarm::moveToBot()
 {
+  midEnable();
   _midStep.changeDir(false); 
   while(!hitsBot())
   {
