@@ -14,12 +14,12 @@ namespace Robotarm
     public partial class Form1 : Form
     {
         SerialPort port = null;
-
+        static Form1 frm;   // static reference
 
         public Form1()
         {
             InitializeComponent();
-
+            frm = this;
             getAvailablePorts();            
         }
 
@@ -52,6 +52,8 @@ namespace Robotarm
             try
             {
                 port = new SerialPort(selectedPort, 9600);
+                port.DataReceived += new SerialDataReceivedEventHandler(dataReceivedHandler);
+
                 port.Open();
             }
             catch (Exception ex)
@@ -109,6 +111,15 @@ namespace Robotarm
             {
                 MessageBox.Show("Unable to list available ports.");
             }
+        }
+
+        private static void dataReceivedHandler(
+                        object sender,
+                        SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string response = sp.ReadExisting();
+            frm.lbl_serialResponse.Text = response;
         }
     }
 }
