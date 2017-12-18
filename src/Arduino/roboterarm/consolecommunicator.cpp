@@ -18,16 +18,41 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
         {
           _onMoveToPos(command,len);
         }
-        
-        if(_onRotateToPosRegistered && strcmp(command[0], "rotate") == 0)
+        else if(_onRotateToPosRegistered && strcmp(command[0], "rotate") == 0)
         {
           _onRotateToPos(command,len);
         }
+        else
+        {
+          Serial.println("Did you mean: move <x> <y>, rotate <deg> <dir>?");
+        }
     }
-    /*else if(len == 2)
+    else if(len == 2)
     {
-      if(_on)
-    }*/
+      if(strcmp(command[0],"move") == 0)
+      {
+        if(_onMoveToTopRegistered && strcmp(command[1],"top") == 0)
+        {
+          _onMoveToTop(command,len);
+        }
+        else if(_onMoveToBotRegistered && (strcmp(command[1],"bot") == 0 || strcmp(command[1],"bottom") == 0))
+        {
+          _onMoveToBot(command,len);
+        }
+        else
+        {
+          Serial.println("Did you mean: move <top|bot>?");
+        }
+      }
+      else if(strcmp(command[0],"enable") == 0)
+      {
+        _onEnable(command,len);
+      }
+      else if(strcmp(command[0],"disable") == 0)
+      {
+        _onDisable(command,len);
+      }
+    }
     else if(len == 1)
     {
       if(_onMoveToTopRegistered && strcmp(command[0],"moveToTop") == 0)
@@ -38,6 +63,22 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
       {
         _onMoveToBot(command,len);
       }
+      else if(strcmp(command[0],"enable") == 0)
+      {
+        _onEnable(command,len);
+      }
+      else if(strcmp(command[0],"disable") == 0)
+      {
+        _onDisable(command,len);
+      }
+      else
+      {
+        Serial.println("Did you mean: moveToTop, moveToBot?");
+      }
+    }
+    else
+    {
+      Serial.println("Too many arguments!");
     }
     // exec callback
     if (_onCommandRegistered) // if registered
@@ -84,6 +125,38 @@ void ConsoleCommunicator::_onRotateToPos(char command[][C_C_STR_SPLIT_LENGTH],in
   }
 
   _onRotateToPosCallback(deg, dir);
+}
+
+void ConsoleCommunicator::_onEnable(char command[][C_C_STR_SPLIT_LENGTH],int len)
+{
+  if(len == 1)
+    _onEnableCallback("ALL");
+  else
+  {
+    if(strlen(command[1]) > 30)
+    {
+      Serial.println("Too many letters!");
+      return;
+    }
+    
+    _onEnableCallback(command[1]);
+  }
+}
+
+void ConsoleCommunicator::_onDisable(char command[][C_C_STR_SPLIT_LENGTH],int len)
+{
+  if(len == 1)
+    _onDisableCallback("ALL");
+  else
+  {
+    if(strlen(command[1]) > 30)
+    {
+      Serial.println("Too many letters!");
+      return;
+    }
+    
+    _onDisableCallback(command[1]);
+  }
 }
 
 int ConsoleCommunicator::_strSplit(char * str, int len, char result[][C_C_STR_SPLIT_LENGTH])
@@ -179,3 +252,15 @@ void ConsoleCommunicator::onRotateToPos(void (*callback)(int deg, bool dir)) {
   _onRotateToPosCallback = callback;
   _onRotateToPosRegistered = true;
 }
+
+void ConsoleCommunicator::onEnable(void (*callback)(char which[30]))
+{
+  _onEnableCallback = callback;
+  _onEnableRegistered = true;
+}
+void ConsoleCommunicator::onDisable(void (*callback)(char which[30]))
+{
+  _onDisableCallback = callback;
+  _onDisableRegistered = true;
+}
+
