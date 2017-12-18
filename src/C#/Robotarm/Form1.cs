@@ -85,7 +85,7 @@ namespace Robotarm
         {
             if (port != null)
             {
-                port.Write(aStr + '\n');
+                port.Write(aStr + '\0');
                 lb_sentCommands.Items.Add(aStr);
             }
             else

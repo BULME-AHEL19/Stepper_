@@ -36,6 +36,7 @@
             this.lb_sentCommands = new System.Windows.Forms.ListBox();
             this.btn_updateAvailablePorts = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.lb_serialResponse = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tb_rawCommand
@@ -59,7 +60,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 9);
+            this.label1.Location = new System.Drawing.Point(14, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(136, 17);
             this.label1.TabIndex = 2;
@@ -106,17 +107,30 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 169);
+            this.label2.Location = new System.Drawing.Point(14, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(162, 17);
             this.label2.TabIndex = 9;
             this.label2.Text = "Connect to a Serial Port:";
+            // 
+            // lb_serialResponse
+            // 
+            this.lb_serialResponse.AutoSize = true;
+            this.lb_serialResponse.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lb_serialResponse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_serialResponse.Location = new System.Drawing.Point(5, 646);
+            this.lb_serialResponse.Name = "lb_serialResponse";
+            this.lb_serialResponse.Padding = new System.Windows.Forms.Padding(3);
+            this.lb_serialResponse.Size = new System.Drawing.Size(192, 24);
+            this.lb_serialResponse.TabIndex = 10;
+            this.lb_serialResponse.Text = "Serial-response goes here.";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1086, 675);
+            this.Controls.Add(this.lb_serialResponse);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_updateAvailablePorts);
             this.Controls.Add(this.lb_sentCommands);
@@ -126,6 +140,7 @@
             this.Controls.Add(this.btn_sendRawCommand);
             this.Controls.Add(this.tb_rawCommand);
             this.Name = "Form1";
+            this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Robotarm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -142,6 +157,7 @@
         private System.Windows.Forms.ListBox lb_sentCommands;
         private System.Windows.Forms.Button btn_updateAvailablePorts;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lb_serialResponse;
     }
 }
 
