@@ -15,14 +15,16 @@ public:
   void update();
   void onCommand(void (*callback)(char command[][C_C_STR_SPLIT_LENGTH], int len));
   void onMoveToPos(void (*callback)(int x, int y));
-  
+  void onRotateToPos(void (*callback)(int deg, bool dir));
 private:
   int _strSplit(char * str, int len, char result[][C_C_STR_SPLIT_LENGTH]);
   void (*_onCommandCallback)(char command[][C_C_STR_SPLIT_LENGTH], int len);
   void (*_onMoveToPosCallback)(int x, int y);
-  
+  void (*_onRotateToPosCallback)(int deg, bool dir);
+    
   bool _onCommandRegistered = false;
   bool _onMoveToPosRegistered = false;
+  bool _onRotateToPosRegistered = false;
 };
 
 #endif

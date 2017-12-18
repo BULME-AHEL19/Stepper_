@@ -12,7 +12,7 @@ void setup()
 
   arm.getConCom()->onMoveToPos(&onMoveCommand);
   arm.getConCom()->onCommand(&onCommand);
-  
+  arm.getConCom()->onRotateToPos(&onRotateCommand);
   arm.begin();
 }
 
@@ -56,4 +56,12 @@ void onCommand(char command[][C_C_STR_SPLIT_LENGTH],int len)
     arm.moveToBot();
   }
 }
+
+void onRotateCommand(int deg, bool dir)
+{
+  arm.rotorEnable();
+  arm.rotorMoveDeg(deg, dir);
+  Serial.println("gemoved");
+}
+
 

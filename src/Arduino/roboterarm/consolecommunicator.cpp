@@ -89,6 +89,25 @@ void ConsoleCommunicator::update()
     {
       _onCommandCallback(words,count);
     }
+
+    if(_onRotateToPosRegistered)
+    {
+      if(count > 2 && strcmp(words[0], "rotate") == 0)
+      {
+        int deg = atoi(words[1]);
+        bool dir;
+        if(strcmp(words[2], "false") == 0)
+          dir = false;
+        else if(strcmp(words[2], "true") == 0)
+          dir = true;
+        else {
+          Serial.println("Invalid parameter!");
+          return;
+        }
+
+        _onRotateToPosCallback(deg, dir);
+      }
+    }
   }
 }
 
@@ -102,4 +121,9 @@ void ConsoleCommunicator::onMoveToPos(void (*callback)(int x, int y))
 {
   _onMoveToPosCallback = callback;
   _onMoveToPosRegistered = true;
+}
+
+void ConsoleCommunicator::onRotateToPos(void (*callback)(int deg, bool dir)) {
+  _onRotateToPosCallback = callback;
+  _onRotateToPosRegistered = true;
 }
