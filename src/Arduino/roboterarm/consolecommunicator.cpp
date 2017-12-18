@@ -22,6 +22,10 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
         {
           _onRotateToPos(command,len);
         }
+        else
+        {
+          Serial.println("Did you mean: move <x> <y>, rotate <deg> <dir>?");
+        }
     }
     else if(len == 2)
     {
@@ -35,6 +39,10 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
         {
           _onMoveToBot(command,len);
         }
+        else
+        {
+          Serial.println("Did you mean: move <top|bot>?");
+        }
       }
     }
     else if(len == 1)
@@ -47,6 +55,14 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
       {
         _onMoveToBot(command,len);
       }
+      else
+      {
+        Serial.println("Did you mean: moveToTop, moveToBot?");
+      }
+    }
+    else
+    {
+      Serial.println("Too many arguments!");
     }
     // exec callback
     if (_onCommandRegistered) // if registered
