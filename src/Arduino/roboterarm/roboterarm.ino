@@ -82,6 +82,9 @@ void onEnable(char which[30])
     arm.headEnable();
     arm.rotorEnable();    
   }
+
+  Serial.print("Enabled ");
+  Serial.println(which);
 }
 void onDisable(char which [30])
 {
@@ -97,6 +100,9 @@ void onDisable(char which [30])
     arm.headDisable();
     arm.rotorDisable();    
   }
+
+  Serial.print("Disabled ");
+  Serial.println(which);
 }
 
 
