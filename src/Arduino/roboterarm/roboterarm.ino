@@ -28,10 +28,14 @@ void loop()
 void onMoveToTop()
 {
   arm.moveToTop();
+
+  Serial.println("Moved to top");
 }
 void onMoveToBot()
 {
   arm.moveToBot();
+
+  Serial.println("Moved to bottom");
 }
 void onMoveToPos(int x,int y)
 {
@@ -42,12 +46,22 @@ void onMoveToPos(int x,int y)
   delay(100);
   arm.headEnable();
   arm.headMoveDeg(y);
+
+  Serial.print("Moved to ");
+  Serial.print(x);
+  Serial.print(" and ");
+  Serial.println(y);
 }
 
 void onRotateCommand(int deg, bool dir)
 {
   arm.rotorEnable();
   arm.rotorMoveDeg(deg, dir);
+
+  Serial.print("Rotated to ");
+  Serial.print(deg);
+  Serial.print(" with direction ");
+  Serial.println(dir);
 }
 
 
