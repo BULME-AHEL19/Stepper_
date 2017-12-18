@@ -17,7 +17,11 @@ public:
   void onMoveToPos(void (*callback)(int x, int y));
   
 private:
+  void _onCommand(char command[][C_C_STR_SPLIT_LENGTH],int len);
+  void _onMoveToPos(char command[][C_C_STR_SPLIT_LENGTH],int len);
+
   int _strSplit(char * str, int len, char result[][C_C_STR_SPLIT_LENGTH]);
+  
   void (*_onCommandCallback)(char command[][C_C_STR_SPLIT_LENGTH], int len);
   void (*_onMoveToPosCallback)(int x, int y);
   

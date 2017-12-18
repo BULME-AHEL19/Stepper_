@@ -10,6 +10,37 @@ ConsoleCommunicator::~ConsoleCommunicator()
 {
 }
 
+void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int len)
+{
+   
+      if (len > 2)
+      {
+        if(_onMoveToPosRegistered && strcmp(command[0], "move") == 0)
+        {
+          _onMoveToPos(command,len);
+        }
+      }
+    }
+    // exec callback
+    if (_onCommandRegistered) // if registered
+    {
+      _onCommandCallback(words,count);
+    }
+}
+
+void ConsoleCommunicator::_onMoveToPos(char command[][C_C_STR_SPLIT_LENGTH],int len)
+{
+  // filter out x and y
+   int x = atoi(words[1]);
+        int y = atoi(words[2]);
+
+#ifdef C_C_DEBUG
+        Serial.println(x);
+        Serial.println(y);
+#endif
+        _onMoveToPosCallback(x, y);
+}
+
 int ConsoleCommunicator::_strSplit(char * str, int len, char result[][C_C_STR_SPLIT_LENGTH])
 {
   int resultCount = 0;
@@ -68,27 +99,10 @@ void ConsoleCommunicator::update()
 
     char words[C_C_STR_SPLIT_NUMBER][C_C_STR_SPLIT_LENGTH];
     int count = _strSplit(command, len, words);
-    
-    // filter out x and y
-    if (_onMoveToPosRegistered)
-    {  
-      if (count > 2 && strcmp(words[0], "move") == 0)
-      {
-        int x = atoi(words[1]);
-        int y = atoi(words[2]);
 
-#ifdef C_C_DEBUG
-        Serial.println(x);
-        Serial.println(y);
-#endif
-        _onMoveToPosCallback(x, y);
-      }
-    }
-    // exec callback
-    if (_onCommandRegistered) // if registered
-    {
-      _onCommandCallback(words,count);
-    }
+    _onCommand(words,count);
+    
+   
   }
 }
 
