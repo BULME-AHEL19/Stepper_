@@ -24,10 +24,20 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
           _onRotateToPos(command,len);
         }
     }
-    /*else if(len == 2)
+    else if(len == 2)
     {
-      if(_on)
-    }*/
+      if(strcmp(command[0],"move") == 0)
+      {
+        if(_onMoveToTopRegistered && strcmp(command[1],"top") == 0)
+        {
+          _onMoveToTop(command,len);
+        }
+        else if(_onMoveToBotRegistered && (strcmp(command[1],"bot") == 0 || strcmp(command[1],"bottom") == 0))
+        {
+          _onMoveToBot(command,len);
+        }
+      }
+    }
     else if(len == 1)
     {
       if(_onMoveToTopRegistered && strcmp(command[0],"moveToTop") == 0)
