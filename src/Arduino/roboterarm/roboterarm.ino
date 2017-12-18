@@ -37,7 +37,9 @@ void onMoveToPos(int x,int y)
 {
   arm.headDisable();
   arm.moveToTop();
+  delay(100);
   arm.midMoveDeg(x);
+  delay(100);
   arm.headEnable();
   arm.headMoveDeg(y);
 }
@@ -46,7 +48,6 @@ void onRotateCommand(int deg, bool dir)
 {
   arm.rotorEnable();
   arm.rotorMoveDeg(deg, dir);
-  Serial.println("gemoved");
 }
 
 

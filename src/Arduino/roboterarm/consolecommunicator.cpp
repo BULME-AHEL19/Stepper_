@@ -18,8 +18,7 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
         {
           _onMoveToPos(command,len);
         }
-        
-        if(_onRotateToPosRegistered && strcmp(command[0], "rotate") == 0)
+        else if(_onRotateToPosRegistered && strcmp(command[0], "rotate") == 0)
         {
           _onRotateToPos(command,len);
         }
