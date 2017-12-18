@@ -16,6 +16,8 @@ void setup()
   arm.getConCom()->onRotateToPos(&onRotateCommand);
   
   arm.begin();
+
+  arm.moveToTop();
 }
 
 void loop()
@@ -44,7 +46,10 @@ void onRotateCommand(int deg, bool dir)
 {
   arm.rotorEnable();
   arm.rotorMoveDeg(deg, dir);
-  Serial.println("gemoved");
+  Serial.print("Rotate: ");
+  Serial.print(deg);
+  Serial.print(", ");
+  Serial.println(dir);
 }
 
 
