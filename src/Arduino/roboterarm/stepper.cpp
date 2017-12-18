@@ -39,8 +39,8 @@ void Stepper_::disable()
 
 int Stepper_::Step(int n, int stepDelay)
 {
-   Serial.print("step: ");
-   Serial.println(n);
+   //Serial.print("step: ");
+   //Serial.println(n);
     
    int i;
    for(i = 0; i < n; i++)
