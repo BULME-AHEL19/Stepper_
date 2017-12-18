@@ -12,7 +12,7 @@ ConsoleCommunicator::~ConsoleCommunicator()
 
 void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int len)
 {
-    if (len > 2)
+    if (len == 3)
     {
         if(_onMoveToPosRegistered && strcmp(command[0], "move") == 0)
         {
@@ -24,7 +24,11 @@ void ConsoleCommunicator::_onCommand(char command[][C_C_STR_SPLIT_LENGTH],int le
           _onRotateToPos(command,len);
         }
     }
-    else if(len < 2)
+    /*else if(len == 2)
+    {
+      if(_on)
+    }*/
+    else if(len == 1)
     {
       if(_onMoveToTopRegistered && strcmp(command[0],"moveToTop") == 0)
       {
@@ -142,7 +146,6 @@ void ConsoleCommunicator::update()
     char words[C_C_STR_SPLIT_NUMBER][C_C_STR_SPLIT_LENGTH];
     int count = _strSplit(command, len, words);
     
-
     _onCommand(words,count);
   }
 }

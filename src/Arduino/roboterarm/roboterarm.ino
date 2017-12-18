@@ -9,9 +9,7 @@ void onMoveToPos(int x,int y);
 void setup()
 { 
   Serial.begin(9600);
-
-
-
+  
   arm.getConCom()->onMoveToTop(&onMoveToTop);
   arm.getConCom()->onMoveToBot(&onMoveToBot);
   arm.getConCom()->onMoveToPos(&onMoveToPos);
@@ -35,7 +33,11 @@ void onMoveToBot()
 }
 void onMoveToPos(int x,int y)
 {
-  
+  arm.headDisable();
+  arm.moveToTop();
+  arm.midMoveDeg(x);
+  arm.headEnable();
+  arm.headMoveDeg(y);
 }
 
 void onRotateCommand(int deg, bool dir)
