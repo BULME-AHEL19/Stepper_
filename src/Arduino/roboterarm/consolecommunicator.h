@@ -18,6 +18,8 @@ public:
   void onRotateToPos(void (*callback)(int deg, bool dir));
   void onMoveToTop(void (*callback)());
   void onMoveToBot(void (*callback)());
+  void onEnable(void (*callback)(char which[30]));
+  void onDisable(void (*callback)(char which[30]));
   
 private:
   void _onCommand(char command[][C_C_STR_SPLIT_LENGTH],int len);
@@ -25,6 +27,8 @@ private:
   void _onMoveToTop(char command[][C_C_STR_SPLIT_LENGTH],int len);
   void _onMoveToBot(char command[][C_C_STR_SPLIT_LENGTH],int len);
   void _onRotateToPos(char command[][C_C_STR_SPLIT_LENGTH],int len);
+  void _onEnable(char command[][C_C_STR_SPLIT_LENGTH],int len);
+  void _onDisable(char command[][C_C_STR_SPLIT_LENGTH],int len);
 
   int _strSplit(char * str, int len, char result[][C_C_STR_SPLIT_LENGTH]);
   
@@ -35,12 +39,16 @@ private:
  
   void (*_onMoveToTopCallback)();
   void (*_onMoveToBotCallback)();
+  void (*_onEnableCallback)(char which[30]);
+  void (*_onDisableCallback)(char which[30]);
   
   bool _onCommandRegistered = false;
   bool _onMoveToPosRegistered = false;
   bool _onMoveToTopRegistered = false;
   bool _onMoveToBotRegistered = false;
   bool _onRotateToPosRegistered = false;
+  bool _onEnableRegistered = false;
+  bool _onDisableRegistered = false;
 };
 
 #endif

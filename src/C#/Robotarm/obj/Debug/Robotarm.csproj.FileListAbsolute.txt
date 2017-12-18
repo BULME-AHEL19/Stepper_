@@ -1,0 +1,9 @@
+F:\Repositories\Stepper_\src\C#\Robotarm\bin\Debug\Robotarm.exe.config
+F:\Repositories\Stepper_\src\C#\Robotarm\bin\Debug\Robotarm.exe
+F:\Repositories\Stepper_\src\C#\Robotarm\bin\Debug\Robotarm.pdb
+F:\Repositories\Stepper_\src\C#\Robotarm\obj\Debug\Robotarm.csprojResolveAssemblyReference.cache
+F:\Repositories\Stepper_\src\C#\Robotarm\obj\Debug\Robotarm.Form1.resources
+F:\Repositories\Stepper_\src\C#\Robotarm\obj\Debug\Robotarm.Properties.Resources.resources
+F:\Repositories\Stepper_\src\C#\Robotarm\obj\Debug\Robotarm.csproj.GenerateResource.Cache
+F:\Repositories\Stepper_\src\C#\Robotarm\obj\Debug\Robotarm.exe
+F:\Repositories\Stepper_\src\C#\Robotarm\obj\Debug\Robotarm.pdb
